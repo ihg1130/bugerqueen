@@ -10,7 +10,11 @@ public class Drink extends Product {
         this.hasStraw = hasStraw;
     }
 
-    public Boolean hasStraw(boolean b) {
+    public Drink(Drink drink){
+        super(drink.getName(), drink.getPrice(), drink.getKcal());
+        this.hasStraw = drink.hasStraw();
+    }
+    public Boolean hasStraw() {
         return hasStraw;
     }
 

@@ -16,12 +16,15 @@ public class OrderApp {
 
         Cart cart = new Cart(productRepository, menu);
 
+        Order order = new Order(cart);
+
         System.out.println("BurgerQueen Order Service");
         while (true){
         menu.printMenu();
         String input = scanner.nextLine();
 
         if(input.equals("+")){
+            order.makeOrder();
             break;
         }
         else{
