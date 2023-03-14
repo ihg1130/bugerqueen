@@ -1,4 +1,7 @@
 package app;
+import app.discount.Discount;
+import app.discount.discountCondition.*;
+import app.discount.discountPolicy.*;
 import app.product.*;
 
 
@@ -16,9 +19,16 @@ public class OrderApp {
 
         Cart cart = new Cart(productRepository, menu);
 
-        Order order = new Order(cart);
 
-        System.out.println("BurgerQueen Order Service");
+        Order order = new Order(cart, new Discount(
+              new DiscountCondition[]{
+                      new CozDiscountCondition(new FixedRateDiscountPolicy(10)),
+                      new KidDiscountCondition(new FixedAmountDiscountPolicy(500))
+            })
+        );
+
+
+                System.out.println("BurgerQueen Order Service");
         while (true){
         menu.printMenu();
         String input = scanner.nextLine();
